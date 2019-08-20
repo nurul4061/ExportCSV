@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-//http://seleniumworks.blogspot.com/2013/10/write-into-existing-csv-file-selenium.html
 
 public class ExportCsv {
 
@@ -24,7 +23,7 @@ public class ExportCsv {
 
 		WebElement dropDownDriver = driver.findElement(By.id("nav-flyout-shopAll"));// Limiting Webdriver scope
 
-		FileWriter fWriter = new FileWriter("C:\\Work\\link3.csv"); // windows machine
+		FileWriter fWriter = new FileWriter("C:\\Work\\link3.csv");
 		fWriter.append("Title");
 		fWriter.append(',');
 		fWriter.append("URL");
@@ -49,7 +48,7 @@ public class ExportCsv {
 		}
 
 
-		WebElement navMenuDriver = driver.findElement(By.xpath("//*[@id=\"nav-main\"]/div[3]"));// Limiting Webdriver scope
+		WebElement navMenuDriver = driver.findElement(By.xpath("//*[@id=\"nav-main\"]/div[3]"));
 
 		List<WebElement> navMenuLinks = navMenuDriver.findElements(By.tagName("a"));
 
