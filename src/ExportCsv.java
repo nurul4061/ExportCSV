@@ -11,70 +11,72 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ExportCsv {
 
-	public static void main(String[] args) throws InterruptedException, IOException {
-		System.setProperty("webdriver.chrome.driver", "C:\\work\\chromedriver.exe");
+    public static void main(String[] args) throws InterruptedException, IOException {
 
-		WebDriver driver = new ChromeDriver();
-		driver.get("https://www.amazon.com");
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-		driver.manage().window().maximize();
+        System.setProperty("webdriver.chrome.driver", "C:\\work\\chromedriver.exe");
 
-		Thread.sleep(3000);
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.amazon.com");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
 
-		WebElement dropDownDriver = driver.findElement(By.id("nav-flyout-shopAll"));// Limiting Webdriver scope
+        Thread.sleep(3000);
 
-		FileWriter fWriter = new FileWriter("C:\\Work\\link3.csv");
-		fWriter.append("Title");
-		fWriter.append(',');
-		fWriter.append("URL");
-		fWriter.append('\n');
+        WebElement dropDownDriver = driver.findElement(By.id("nav-flyout-shopAll")); // Limiting Webdriver scope
 
-		List<WebElement> dropDownLinks = dropDownDriver.findElements(By.tagName("a"));
+        FileWriter fWriter = new FileWriter("C:\\Work\\link3.csv");
+        fWriter.append("Title");
+        fWriter.append(',');
+        fWriter.append("URL");
+        fWriter.append('\n');
 
-		//System.out.println(dropDownLinks.size());
-		
-		for(WebElement link:dropDownLinks)
-		{
-			String element1=link.findElement(By.tagName("span")).getText();
-			String element2=link.getAttribute("href");
-			
-			System.out.println(element1);
-			System.out.println(element2);
-			fWriter.append(element1);
-			fWriter.append(',');
-			fWriter.append(element2);
-			fWriter.append('\n');
+        List < WebElement > dropDownLinks = dropDownDriver.findElements(By.tagName("a"));
+
+        System.out.println(dropDownLinks.size()); //Print the dropDownLinks size
+
+        for (WebElement link: dropDownLinks) {
+
+            String element1 = link.findElement(By.tagName("span")).getText();
+            String element2 = link.getAttribute("href");
+
+            System.out.println(element1);
+            System.out.println(element2);
+            fWriter.append(element1);
+            fWriter.append(',');
+            fWriter.append(element2);
+            fWriter.append('\n');
 			fWriter.flush();
-		}
-
-
-		WebElement navMenuDriver = driver.findElement(By.xpath("//*[@id=\"nav-main\"]/div[3]"));
-
-		List<WebElement> navMenuLinks = navMenuDriver.findElements(By.tagName("a"));
-
-		System.out.println(navMenuLinks.size());
-		
-		for(WebElement link:navMenuLinks)
-		{
-			if(link.isDisplayed())
-			{
-				String element1=link.getText();
-				String element2=link.getAttribute("href");
-				
-				System.out.println(element1);
-				System.out.println(element2);
-				fWriter.append(element1);
-				fWriter.append(',');
-				fWriter.append(element2);
-				fWriter.append('\n');
-				fWriter.flush();
-			}
-				
 			
-		}
-		
-		driver.quit();
+        }
 
-	}
+
+        WebElement navMenuDriver = driver.findElement(By.xpath("//*[@id=\"nav-main\"]/div[3]"));
+
+        List < WebElement > navMenuLinks = navMenuDriver.findElements(By.tagName("a"));
+
+        System.out.println(navMenuLinks.size());
+
+        for (WebElement link: navMenuLinks) {
+            if (link.isDisplayed()) {
+
+                String element1 = link.getText();
+                String element2 = link.getAttribute("href");
+
+                System.out.println(element1);
+                System.out.println(element2);
+                fWriter.append(element1);
+                fWriter.append(',');
+                fWriter.append(element2);
+                fWriter.append('\n');
+				fWriter.flush();
+				
+            }
+
+
+        }
+
+        driver.quit();
+
+    }
 
 }
